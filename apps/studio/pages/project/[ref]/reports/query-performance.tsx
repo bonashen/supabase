@@ -251,24 +251,27 @@ const QueryPerformanceReport: NextPageWithLayout = () => {
             </div>
           </AccordionTrigger>
           <AccordionContent_Shadcn_ className="bg-white p-4 border-t">
-            <div>
-              <div>step 1, enable Hypopg </div>
-              <div>
-                Hypopg is {ext_hypopg?.installed_version ? 'enabled' : 'not enabled'}
-                {!ext_hypopg?.installed_version && (
-                  <Button onClick={() => setShowConfirmEnableModal(true)}>Enable Hypopg</Button>
-                )}
-              </div>
+            <ul>
+              <li>
+                {/* {hypopg is a dependency of index_advisor} */}
+                step 1, enable Hypopg ({ext_hypopg?.installed_version ? 'enabled' : 'not enabled'})
+                <div>
+                  {!ext_hypopg?.installed_version && (
+                    <Button onClick={() => setShowConfirmEnableModal(true)}>Enable Hypopg</Button>
+                  )}
+                </div>
+              </li>
 
-              <div>
+              <li>
                 step 2, expand the <code>SELECT</code> queries below to see index suggestions
-              </div>
+              </li>
+
               <EnableExtensionModal
                 visible={showConfirmEnableModal}
                 extension={extensions?.find((extension) => extension.name === 'hypopg') as any}
                 onCancel={() => setShowConfirmEnableModal(false)}
               />
-            </div>
+            </ul>
           </AccordionContent_Shadcn_>
         </AccordionItem_Shadcn_>
       </Accordion_Shadcn_>
